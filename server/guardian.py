@@ -14,18 +14,23 @@ class GuardianResponse(BaseModel):
     explanation: str
 
 
-def second_guardian(model: str, prompt: str, first_output: str):
-    full_prompt = (
-        prompt + "\n\n" + "Here is the first guardian's reasoning:\n" + first_output
-    )
+class Guardian2Response(BaseModel):
+    valid: bool
+
+
+def second_guardian(
+    model: str, prompt: str = None, first_output: str = None, status: str = None
+):
+    full_prompt = prompt
     response: ChatResponse = chat(
         model=model,
         messages=[{"role": "user", "content": full_prompt, "temperature": 0.0}],
-        format=GuardianResponse.model_json_schema(),
+        format=Guardian2Response.model_json_schema(),
         stream=False,
     )
-    output = GuardianResponse.model_validate_json(response.message.content)
-    return output
+    output = Guardian2Response.model_validate_json(response.message.content)
+    output = output.model_dump()
+    return output["valid"]
 
 
 def first_guardian(
@@ -44,18 +49,17 @@ def first_guardian(
     return output
 
 
-if __name__ == "__main__":
-    model = "deepseek-r1:8b"
-    prompt = f"""[INST] <<SYS>>
-        You are a helpful assistant. Please analyze the user's messages in a concise manner.
-        Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
-        Return valid JSON with keys: "sentiment", "alert_needed" (true/false), and "explanation".
-        <</SYS>>
-        Analyze these chat messages briefly and respond *only* with JSON.
-        
-        Messages:
-        yoyoyo
-        [/INST]
-        """
-    response = first_guardian(model, prompt)
-    print(response)
+# model = "deepseek-r1:1.5b"
+# # prompt = f"""[INST] <<SYS>>
+# #     You are a helpful assistant. Please analyze the user's messages in a concise manner.
+# #     Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
+# #     Return valid JSON with keys: "sentiment", "alert_needed" (true/false), and "explanation".
+# #     <</SYS>>
+# #     Analyze these chat messages briefly and respond *only* with JSON.
+
+# #     Messages:
+# #     yoyoyo
+# #     [/INST]
+# #     """
+# response = second_guardian(model, first_output="SCAM", status="SCAM")
+# print(response)

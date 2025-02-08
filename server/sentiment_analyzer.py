@@ -14,11 +14,23 @@ from ollama import chat
 from ollama import ChatResponse
 from guardian import *
 from url_extractions import extract_urls_from_text
+import re
+from tkinter import messagebox
+import tkinter as tk
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from API_check.email_check import EmailCheck
 from API_check.url_check import UrlCheck
 from API_check.phone_check import PhoneCheck
+
+# Add this near the top of the file, after imports
+parent_monitor = None
+
+
+def register_parent_monitor(monitor):
+    global parent_monitor
+    parent_monitor = monitor
+
 
 # Configure logging
 logging.basicConfig(
@@ -91,6 +103,19 @@ def load_scammer_phone():
         return None
 
 
+def load_scammer_timestamp():
+    try:
+        with open("./../config.json", "r") as f:
+            config = json.load(f)
+            if config.get("scammer_timestamp"):
+                return config.get("scammer_timestamp")
+            else:
+                return None
+    except Exception as e:
+        logging.error(f"Error loading scammer info: {e}")
+        return None
+
+
 def analyze_sentiment(chats: List[Chat]) -> SentimentResponse:
     logger.info("Starting sentiment analysis")
 
@@ -102,28 +127,15 @@ def analyze_sentiment(chats: List[Chat]) -> SentimentResponse:
             logger.error("LLAMA_MODEL_PATH not found in environment variables")
             raise ValueError("LLAMA_MODEL_PATH environment variable is not set")
 
-        # Initialize with reduced context size and optimal parameters
-        # with redirect_metal_output():
-        #     logger.debug("Creating Llama instance...")
-        #     llm = Llama(
-        #         model_path=model_path,
-        #         n_ctx=512,  # Reduced context size
-        #         n_threads=2,  # Reduced threads
-        #         n_batch=512,  # Batch size
-        #         verbose=False,
-        #         # instruct=True  # <-- Uncomment if your model requires "instruct" mode
-        #     )
-
-        # logger.info("Model initialized successfully")
-
-        # Prepare chat text with length limit
-        # messages_text = "\n".join([f"Sender: {chat.message}" for chat in chats[:5]])
         messages_text = chats[0].message
+        phone = None
         if load_scammer_phone():
             phone = load_scammer_phone()
         if load_scammer_email():
             email = load_scammer_email()
-            
+        if load_scammer_timestamp():
+            timestamp = load_scammer_timestamp()
+
         url = extract_urls_from_text(messages_text)
         if url:
             url_checker = UrlCheck()
@@ -134,103 +146,146 @@ def analyze_sentiment(chats: List[Chat]) -> SentimentResponse:
                 url_prompt = ",an unsafe url from the text message after being checked with google safe browser"
         else:
             url_prompt = ""
-        if not phone:
+        if phone:
             phone_checker = PhoneCheck()
-            phone_score = phone_checker.check_phone(phone)
-            timestamp = "out the business hour"
-            prompt = f"""
-            You are a scam detecting assistant. Given the timestamp is {timestamp} and the average valid score of {phone_score} from the phone preset fields pipeline {url_prompt}, and the content below, determine to what extent is this text conversation a safe message and provide 5 reasons for this conclusion.
-            Please analyze the user's messages in a concise manner, following the format below.
+            score = phone_checker.check_phone(phone_number=phone)
+
+            # Convert timestamp (assumed format "HH:MM") into an integer hour.
+            try:
+                hour = int(timestamp.split(":")[0])
+            except Exception as e:
+                logger.error(f"Failed to parse timestamp to integer: {e}")
+                # Set default hour or handle the error as needed.
+                hour = 0
+            if hour > 17 or hour < 9:
+                timestamp_text = "out of the business hour"
+            else:
+                timestamp_text = "in the business hour"
+
+            logger.info(f"timestamp_text: {timestamp_text}")
+
+            initial_prompt = f"""
+            You are a scam detecting assistant. Given the timestamp is {timestamp_text}, the average valid phone score of {score} from the preset fields pipeline {url_prompt}, and the message content below, determine to what extent is this text conversation a safe message and provide the entire thought process behind this conclusion.
+            Please analyze the user's messages in a concise manner, following the format below.\n\n
             Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
-            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation" (5 bullet points for the conclusion).
-            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".
-            Note that for explanation key, you MUST output 5 sentences of reasonings.
-            Analyze these chat messages briefly and respond *only* with JSON.
-         
-            Messages:
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".  Analyze these chat messages briefly and respond *only* with JSON.\n\n
+            Messages:\n\n
             {messages_text}
             """
-        elif email:
+        else:
             email_checker = EmailCheck()
-            email_score = email_checker.check_email(email)
-            prompt = f"""
-            You are a scam detecting assistant. Given the timestamp is in {timestamp} and the average valid score of {email_score} from the email preset fields pipeline {url_prompt}, and the content below, determine to what extent is this text conversation a safe message and provide 5 reasons for this conclusion.
-            Please analyze the user's messages in a concise manner, following the format below.
+            score = email_checker.check_email(email=None)
+            # Convert timestamp (assumed format "HH:MM") into an integer hour.
+            try:
+                hour = int(timestamp.split(":")[0])
+            except Exception as e:
+                logger.error(f"Failed to parse timestamp to integer: {e}")
+                # Set default hour or handle the error as needed.
+                hour = 0
+            if hour > 17 or hour < 9:
+                timestamp_text = "out of the business hour"
+            else:
+                timestamp_text = "in the business hour"
+            initial_prompt = f"""
+            You are a scam detecting assistant. Given the timestamp is {timestamp_text}, the average valid email score of {score} from the preset fields pipeline {url_prompt}, and the message content below, determine to what extent is this text conversation a safe message and provide the entire thought process behind this conclusion.
+            Please analyze the user's messages in a concise manner, following the format below.\n\n
             Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
-            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation" (5 sentences).
-            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".
-            Note that for explanation key, you MUST output 5 sentences of reasonings.
-            Analyze these chat messages briefly and respond *only* with JSON.
-         
-            Messages:
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".  Analyze these chat messages briefly and respond *only* with JSON.\n\n
+            Messages:\n\n
             {messages_text}
             """
-        # logger.info(f"Email Check:{EmailCheck().check_email('georgepan900530@gmail.com')}")
-        # logger.info(f"URL Check:{UrlCheck().check_url('https://www.google.com')}")
-        # logger.info(f"Phone Check:{PhoneCheck().check_phone('14158586273')}")
 
-        logger.debug(f"Prompt length: {len(prompt)}")
-        logger.debug(f"Prompt:\n{prompt}")
+        reason_valid = None
+        for i in range(6):
+            # Generate completion with timeout
+            logger.info("Starting response generation...")
+            if i == 0:  # it is the first iteration
+                prompt = initial_prompt
+            else:
+                add_on_prompt = f"""
+                The scam detecting result validator has validated your conclusion and determined it is incorrect for the {i}th time. 
+                Please reconsider your initial answer and provide another response.\n\n
+                """
+                prompt = add_on_prompt + initial_prompt
+                # logger.info(f"prompt:{prompt}")
+            try:
+                with redirect_metal_output(), timeout(60):  # 30 second timeout
+                    response = first_guardian(
+                        model="deepseek-r1:8b",
+                        # model="llama3.2:latest",
+                        prompt=prompt,
+                    )
 
-        # Generate completion with timeout
-        logger.info("Starting response generation...")
-        try:
-            with redirect_metal_output(), timeout(60):  # 30 second timeout
-                response = first_guardian(
-                    model="deepseek-r1:8b",
-                    # model="llama3.2:latest",
-                    prompt=prompt,
+            except TimeoutException:
+                logger.error("Model inference timed out after 30 seconds")
+                return SentimentResponse(
+                    sentiment="ERROR",
+                    alert_needed=False,
+                    explanation="Model inference timed out",
                 )
-                # response = llm(
-                #     prompt=prompt,
-                #     max_tokens=128,  # Reduced max tokens
-                #     temperature=0.0,  # Lower temperature
-                #     echo=False,
-                #     # Removed default "stop" sequences to avoid immediate cut-off:
-                #     # stop=["</s>", "\n\n"],
-                #     stream=False,
-                # )
-                logger.debug(f"Raw response received: {response}")
 
-        except TimeoutException:
-            logger.error("Model inference timed out after 30 seconds")
-            return SentimentResponse(
-                sentiment="ERROR",
-                alert_needed=False,
-                explanation="Model inference timed out",
-            )
+            # Process response
+            try:
+                result = response
+                match = re.search(r"\{.*\}", result, re.DOTALL)
+                if not match:
+                    logger.error("No JSON object found in the response.")
+                    return SentimentResponse(
+                        sentiment="SUSPICIOUS",
+                        alert_needed=True,
+                        explanation="Failed to find JSON block in model response.",
+                    )
 
-        # Process response
-        try:
-            logger.info(response)
-            # result = response["choices"][0]["text"].strip()
-            result = response
-            logger.info(result)
-            # Try to locate JSON within the result
-            import re
+                json_str = match.group(0)  # The substring that *should* be valid JSON
+                parsed_result = json.loads(json_str)
+                explanation, sentiment = (
+                    parsed_result["explanation"],
+                    parsed_result["sentiment"],
+                )
+                second_prompt = f"""
+                You are a scam detecting result validator. From this previous conclusion of a scam detector:\n\n{explanation}\n\nConsider the thought process and the following content related to the message: The timestamp is {timestamp}, 
+                the average valid phone or email score of {score} from the preset fields pipeline {url_prompt}.
+                Please analyze the previous detector's reasonings and determine its validity.
+                Classify the reasoning for the conversation as "VALID" or "INVALID".
+                Return valid JSON with keys: "valid" (True or False).
+                Note that for valid key, the only options are True or False.
+                """
 
-            match = re.search(r"\{.*\}", result, re.DOTALL)
-            if not match:
-                logger.error("No JSON object found in the response.")
+                reason_valid = second_guardian(
+                    model="deepseek-r1:8b",
+                    prompt=second_prompt,
+                    first_output=explanation,
+                    status=sentiment,
+                )
+                logger.info(f"current iteration: {i}, reason_valid: {reason_valid}")
+
+                if reason_valid:
+                    logger.info(f"The reason is valid, returning the result")
+                    return SentimentResponse(**parsed_result)
+                else:
+                    logger.info(f"Invalid analysis result, retrying (attempt {i+1})...")
+                    continue
+
+            except (json.JSONDecodeError, KeyError, IndexError) as e:
+                logger.error(f"Error processing response: {str(e)}")
                 return SentimentResponse(
                     sentiment="SUSPICIOUS",
                     alert_needed=True,
-                    explanation="Failed to find JSON block in model response.",
+                    explanation="Failed to parse model response. Defaulting to suspicious for safety.",
                 )
 
-            json_str = match.group(0)  # The substring that *should* be valid JSON
-            logger.info(f"json_str:{json_str}")
-            parsed_result = json.loads(json_str)
-            return SentimentResponse(**parsed_result)
-
-        except (json.JSONDecodeError, KeyError, IndexError) as e:
-            logger.error(f"Error processing response: {str(e)}")
-            return SentimentResponse(
-                sentiment="SUSPICIOUS",
-                alert_needed=True,
-                explanation="Failed to parse model response. Defaulting to suspicious for safety.",
-            )
-
+        # if the reason is not valid after 4 iterations, return SUSPICIOUS
+        parsed_result = {
+            "sentiment": "SUSPICIOUS",
+            "alert_needed": True,
+            "explanation": "Failed to find valid reason after 4 iterations, marking as suspicious",
+        }
+        logger.info(
+            f"After 4 iterations, the reason is not valid, returning SUSPICIOUS"
+        )
+        return SentimentResponse(**parsed_result)
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}", exc_info=True)
         return SentimentResponse(

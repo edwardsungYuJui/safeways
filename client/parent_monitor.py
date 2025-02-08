@@ -87,6 +87,7 @@ class ParentMonitorWindow:
         self.alerts = []
         self.monitoring_active = True
         self.reset_callback = reset_callback
+        self.is_processing = False
         
         # Load scammer identifier
         self.scammer_id = load_scammer_info()
@@ -155,12 +156,23 @@ class ParentMonitorWindow:
         )
         monitoring_frame.pack(fill=tk.BOTH, pady=(0, 15))
 
+        # Add processing status indicator
+        self.processing_label = ttk.Label(
+            monitoring_frame,
+            text="",
+            font=MonitorStyle.TEXT_FONT,
+            foreground="orange"
+        )
+        self.processing_label.pack(fill=tk.X, pady=(0, 5))
+        # self.processing_label.configure(text="Processing messages...")
+
+
         # Status indicators
         self.scammer_status = self.create_child_status(monitoring_frame, "scammer")
         self.scammer_status.pack(fill=tk.X, pady=(0, 10))
 
-        self.victim_status = self.create_child_status(monitoring_frame, "victim")
-        self.victim_status.pack(fill=tk.X)
+        # self.victim_status = self.create_child_status(monitoring_frame, "victim")
+        # self.victim_status.pack(fill=tk.X)
 
         # Alerts Section
         alerts_header_frame = ttk.Frame(main_frame)
@@ -224,9 +236,9 @@ class ParentMonitorWindow:
         frame = ttk.Frame(parent)
 
         # Use scammer_id for the scammer's status
-        display_name = self.scammer_id if name == "scammer" else name
+        display_name = self.scammer_id 
         header = ttk.Label(
-            frame, text=f"{display_name}'s Chat Status", font=MonitorStyle.TITLE_FONT
+            frame, text=f"Monitoring Chat With {display_name}", font=MonitorStyle.TITLE_FONT
         )
         header.pack(anchor="w")
 
@@ -318,7 +330,16 @@ class ParentMonitorWindow:
         )
         sentiment_label.configure(foreground=color)
 
+    def update_processing_status(self, is_processing: bool):
+        """Update the processing status indicator"""
+        self.is_processing = is_processing
+        if is_processing:
+            self.processing_label.configure(text="Processing messages...")
+        else:
+            self.processing_label.configure(text="")
+
     def add_alert(self, alert: MonitoringAlert):
+        self.update_processing_status(False)  # Clear processing status when alert arrives
         self.alerts.append(alert)
         self.save_alert(alert)
 
@@ -412,6 +433,8 @@ class ParentMonitorWindow:
                     if alert:
                         self.add_alert(alert)
                 except queue.Empty:
+                    # if not self.is_processing:  # Commented out processing status check
+                    #     self.update_processing_status(True)
                     pass
             self.window.after(100, check_alerts)
 
@@ -425,7 +448,7 @@ class ParentMonitorWindow:
     def run(self):
         self.window.mainloop()
 
-
+    
 if __name__ == "__main__":
     # Test code
     test_queue = queue.Queue()

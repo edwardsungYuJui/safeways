@@ -16,6 +16,8 @@ from typing import List, Optional
 import logging
 import webbrowser
 import json
+import time
+import os
 
 # Configure logging
 logging.basicConfig(
@@ -146,8 +148,14 @@ class ChatWindow:
         self.on_close = on_close
         self.help_button = None  # Initialize help button reference
 
+        self.ui_queue = queue.Queue()
+        self.process_ui_queue()
+
         self.update_interval = 1000  # Update every 1000 milliseconds (1 second)
         self.schedule_updates()
+
+        # Add async handler initialization
+        self.async_handler = AsyncTkThread()
 
         self.setup_gui()
         self.window.protocol("WM_DELETE_WINDOW", self.handle_close)
@@ -158,11 +166,22 @@ class ChatWindow:
         self.update_chat_display()
         self.window.after(self.update_interval, self.schedule_updates)
 
+    def process_ui_queue(self):
+        """Poll the queue and execute any pending UI update callables."""
+        try:
+            while True:
+                callback = self.ui_queue.get_nowait()
+                callback()  # Execute the callback in the main thread
+        except queue.Empty:
+            pass
+        # Schedule the next check (every 100ms, adjust as needed)
+        self.window.after(100, self.process_ui_queue)
+
     def update_chat_display(self):
         """Update the chat display with new messages or changes."""
         # Logic to refresh or update the chat display
         # For example, check for new messages and display them
-        logging.info("Chat display updated")
+        # logging.info("Chat display updated")
         # ... additional update logic ...
 
     def setup_gui(self):
@@ -246,9 +265,9 @@ class ChatWindow:
             self.buttons_frame,
             text="Help",
             command=self.open_help_website,
-            bg='red',
-            fg='white',
-            highlightbackground='red'  # For macOS
+            bg="red",
+            fg="white",
+            highlightbackground="red",  # For macOS
         )
         # Don't pack the help button yet - will be shown when needed
 
@@ -257,7 +276,7 @@ class ChatWindow:
             self.buttons_frame,
             text="Send",
             command=self.send_message,
-            style="Custom.TButton"
+            style="Custom.TButton",
         )
         self.send_button.pack(side=tk.RIGHT)
 
@@ -309,14 +328,34 @@ class ChatWindow:
         self.message_callback(self.name, message)
         return True
 
+
+
     def display_message(self, sender: str, message: str, is_self: bool = False):
         self.chat_display.config(state=tk.NORMAL)
 
         # Add spacing before message
         self.chat_display.insert(tk.END, "\n")
 
+        def load_scammer_timestamp():
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            config_path = os.path.join(script_dir, "..", "config.json")
+            try:
+                with open(config_path, "r") as f:
+                    config = json.load(f)
+                    if config.get("scammer_timestamp"):
+                        logging.info(f"timestamp: {config.get('scammer_timestamp')}")
+                        return config.get("scammer_timestamp")
+                    else:
+                        logging.info("No timestamp in config.json")
+                        return None
+            except Exception as e:
+                logging.error(f"Error loading scammer info: {e}")
+                return None
+
         # Get current timestamp
-        timestamp = datetime.now().strftime("%H:%M")
+        # timestamp = datetime.now().strftime("%H:%M")
+        timestamp = load_scammer_timestamp()
+        logging.info(f"timestamp: {timestamp}")
 
         # Create and insert message bubble with sender and timestamp
         bubble = self.create_message_bubble(sender, message, timestamp, is_self)
@@ -381,7 +420,9 @@ class ChatWindow:
         ]
         return self.chat_display.create_polygon(points, smooth=True, **kwargs)
 
-    def create_message_bubble(self, sender: str, message: str, timestamp: str, is_self=False):
+    def create_message_bubble(
+        self, sender: str, message: str, timestamp: str, is_self=False
+    ):
         """Create a message bubble with sender name and timestamp"""
         # Main container for the entire message (sender, timestamp, and bubble)
         container = tk.Frame(
@@ -403,7 +444,7 @@ class ChatWindow:
             fg="#65676B",
             bg=MessengerStyle.BG_COLOR,
         )
-        
+
         # Timestamp label
         time_label = tk.Label(
             header_frame,
@@ -430,24 +471,6 @@ class ChatWindow:
         )
         bubble_frame.pack(fill=tk.X)
 
-        # Create the rounded rectangle for the message
-        shape = RoundedCanvas(
-            bubble_frame,
-            width=250,
-            height=50,
-            bg=MessengerStyle.BG_COLOR,
-            highlightthickness=0,
-        )
-        shape.create_rounded_rectangle(
-            2,
-            2,
-            248,
-            48,
-            radius=MessengerStyle.BUBBLE_RADIUS,
-            fill=MessengerStyle.SENT_BG if is_self else MessengerStyle.RECEIVED_BG,
-        )
-        shape.pack(expand=True, fill=tk.BOTH)
-
         # Message text label
         label = tk.Label(
             bubble_frame,
@@ -455,10 +478,53 @@ class ChatWindow:
             wraplength=230,
             justify=tk.LEFT,
             bg=MessengerStyle.SENT_BG if is_self else MessengerStyle.RECEIVED_BG,
+            # bg="red",
             fg=MessengerStyle.SENT_FG if is_self else MessengerStyle.RECEIVED_FG,
             font=MessengerStyle.MESSAGE_FONT,
         )
+
+        label.pack()
+        label.update_idletasks()
+        text_width = label.winfo_reqwidth() + 20
+        text_height = label.winfo_reqheight() + 20
         label.place(x=10, y=10)
+        # print(f"text_width: {text_width}, text_height: {text_height}")
+
+        # Create the rounded rectangle for the message
+        shape = RoundedCanvas(
+            bubble_frame,
+            # width=250,
+            # height=50,
+            width=text_width,
+            height=text_height,
+            bg=MessengerStyle.BG_COLOR,
+            highlightthickness=0,
+        )
+        shape.create_rounded_rectangle(
+            2,
+            2,
+            # 248,
+            # 48,
+            text_width - 2,
+            text_height - 2,
+            radius=MessengerStyle.BUBBLE_RADIUS,
+            fill=MessengerStyle.SENT_BG if is_self else MessengerStyle.RECEIVED_BG,
+        )
+        shape.pack(expand=True, fill=tk.BOTH)
+
+        # # Message text label
+        label2 = tk.Label(
+            bubble_frame,
+            text=message,
+            wraplength=230,
+            justify=tk.LEFT,
+            bg=MessengerStyle.SENT_BG if is_self else MessengerStyle.RECEIVED_BG,
+            # bg="red",
+            fg=MessengerStyle.SENT_FG if is_self else MessengerStyle.RECEIVED_FG,
+            font=MessengerStyle.MESSAGE_FONT,
+        )
+        label2.pack()
+        label2.place(x=10, y=10)
 
         return container
 
@@ -516,112 +582,162 @@ class ChatWindow:
         )
 
     def open_help_website(self):
-        """Open the help website in the default browser"""
+        """Open the help website window for user input and fetch guidelines from the LLM."""
         # Create a new window for user input
         input_window = tk.Toplevel(self.window)
         input_window.title("Help Input")
+        input_window.geometry("500x400")
+
+        # Create a frame for input fields
+        input_frame = ttk.Frame(input_window, padding="10")
+        input_frame.pack(fill=tk.X)
 
         # Labels and Entry fields for user input
-        tk.Label(input_window, text="Please describe what happened:").pack()
-        what_entry = tk.Entry(input_window, width=50)
-        what_entry.pack(pady=5)
+        tk.Label(input_frame, text="Please describe what happened:").pack(anchor="w")
+        what_entry = tk.Entry(input_frame, width=50)
+        what_entry.pack(fill=tk.X, pady=(0, 10))
 
-        tk.Label(input_window, text="Please specify when it happened:").pack()
-        when_entry = tk.Entry(input_window, width=50)
-        when_entry.pack(pady=5)
+        tk.Label(input_frame, text="Please specify when it happened:").pack(anchor="w")
+        when_entry = tk.Entry(input_frame, width=50)
+        when_entry.pack(fill=tk.X, pady=(0, 10))
 
-        tk.Label(input_window, text="Please indicate where it happened:").pack()
-        where_entry = tk.Entry(input_window, width=50)
-        where_entry.pack(pady=5)
+        tk.Label(input_frame, text="Please indicate where it happened:").pack(
+            anchor="w"
+        )
+        where_entry = tk.Entry(input_frame, width=50)
+        where_entry.pack(fill=tk.X, pady=(0, 10))
 
-        # Label to display guidelines
-        guidelines_label = tk.Label(input_window, text="", wraplength=400)
-        guidelines_label.pack(pady=10)
+        # Create a text widget for guidelines (with a placeholder)
+        guidelines_text = tk.Text(input_window, height=10, width=50, wrap=tk.WORD)
+        guidelines_text.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
+        guidelines_text.insert("1.0", "Guidelines will appear here...")
+        guidelines_text.config(state=tk.DISABLED)
 
         def submit():
-            what = what_entry.get()
-            when = when_entry.get()
-            where = where_entry.get()
+            what = what_entry.get().strip()
+            when = when_entry.get().strip()
+            where = where_entry.get().strip()
 
-            # Disable the submit button to prevent multiple submissions
+            if not (what and when and where):
+                messagebox.showerror("Input Error", "Please fill out all fields.")
+                return
+
+            logging.info(
+                f"Submit clicked with inputs - what: {what}, when: {when}, where: {where}"
+            )
+
+            # Disable the submit button and show a loading message
             submit_button.config(state=tk.DISABLED)
+            guidelines_text.config(state=tk.NORMAL)
+            guidelines_text.delete("1.0", tk.END)
+            guidelines_text.insert("1.0", "Fetching guidelines...")
+            guidelines_text.config(state=tk.DISABLED)
+            input_window.update_idletasks()  # Force UI update
 
-            # Call the LLM asynchronously
-            guidelines_label.config(text="Fetching guidelines...")  # Indicate loading
-            self.async_handler.run(self.fetch_guidelines(what, when, where, guidelines_label))
+            def llm_thread():
+                try:
+                    # Call your LLM synchronously (this may block, so it's run in a background thread)
+                    guidelines = self.get_guidelines_from_llm(what, when, where)
+                    # Optionally, wait a bit longer if needed (for example, 2 seconds)
+                    import time
 
-            # Clear the entry fields after submission
-            what_entry.delete(0, tk.END)
-            when_entry.delete(0, tk.END)
-            where_entry.delete(0, tk.END)
+                    time.sleep(2)
 
-        # Submit button
-        submit_button = tk.Button(input_window, text="Submit", command=submit)
+                    def update_ui():
+                        guidelines_text.config(state=tk.NORMAL)
+                        guidelines_text.delete("1.0", tk.END)
+                        guidelines_text.insert("1.0", guidelines)
+                        guidelines_text.config(state=tk.DISABLED)
+                        submit_button.config(state=tk.NORMAL)
+                        logging.info("UI updated with guidelines")
+
+                    # Instead of calling after() directly, put the update function in the queue
+                    self.ui_queue.put(update_ui)
+
+                except Exception as e:
+                    logging.error(f"Error in LLM thread: {e}", exc_info=True)
+
+                    def show_error():
+                        guidelines_text.config(state=tk.NORMAL)
+                        guidelines_text.delete("1.0", tk.END)
+                        guidelines_text.insert(
+                            "1.0",
+                            "Unable to get guidelines at this time. Please try again later.",
+                        )
+                        guidelines_text.config(state=tk.DISABLED)
+                        submit_button.config(state=tk.NORMAL)
+
+                    self.ui_queue.put(show_error)
+
+            # Start the LLM call in a background thread
+            threading.Thread(target=llm_thread, daemon=True).start()
+
+        # Create the Submit button and set focus to the first entry field
+        submit_button = ttk.Button(input_window, text="Submit", command=submit)
         submit_button.pack(pady=10)
-
-        # Focus on the first entry field
         what_entry.focus_set()
 
-    def fetch_guidelines(self, what: str, when: str, where: str, guidelines_label):
-        """Fetch guidelines from the LLM and update the label"""
-        guidelines = self.get_guidelines_from_llm(what, when, where)
-        guidelines_label.config(text=guidelines)  # Display guidelines in the label
-
     def get_guidelines_from_llm(self, what: str, when: str, where: str) -> str:
-        """Interact with an LLM using Ollama to get guidelines based on user input"""
-        from ollama import chat
-        from ollama import ChatResponse
-        from pydantic import BaseModel
+        """Synchronous method to interact with LLM using Ollama"""
+        import ollama
 
-        class GuidelinesResponse(BaseModel):
-            guidelines: str
+        # Construct the prompt
+        prompt = f"""Since user has got scammed. Based on the following user input, provide clear guidelines to help address scams:
+What happened: {what}
+When it happened: {when}
+Where it happened: {where}
+Provide the guidelines as a numbered list of steps. Do not include any internal chain-of-thought, reasoning, or '<think>' tags. Only output the list of guidelines."""
 
-        # Construct the prompt for the LLM
-        prompt = f"""[INST] <<SYS>>
-        You are a helpful assistant. Please provide guidelines to mitigate the scam issue based on the user's input.
-        User input:
-        What: {what}
-        When: {when}
-        Where: {where}
-        <</SYS>>
-        Please respond with the guidelines.
-        <</INST>>"""
+        try:
+            logging.info(f"Sending request to Ollama with prompt: {prompt}")
+            response_stream = ollama.chat(
+                # model="deepseek-r1:8b",
+                model="llama3.2",
+                messages=[{"role": "user", "content": prompt}],
+                stream=True,
+            )
 
-        # Call the Ollama chat function
-        response: ChatResponse = chat(
-            model="deepseek-r1:8b",  # Replace with your actual model name
-            messages=[{"role": "user", "content": prompt, "temperature": 0.0}],
-            format=GuidelinesResponse.model_json_schema(),
-            stream=False,
-        )
-        
-        # Validate and extract the response
-        output = GuidelinesResponse.model_validate_json(response.message.content)
-        return output.guidelines
+            output = ""
+            # Accumulate the streamed chunks
+            for chunk in response_stream:
+                output += chunk["message"]["content"]
+                # Optionally update the UI here to show streaming output
+                time.sleep(0.1)  # small sleep to avoid hogging CPU, if needed
+
+            logging.info(f"Extracted full content: {output}")
+            return output
+
+        except Exception as e:
+            logging.error(f"LLM error: {e}")
+            return "Unable to get guidelines at this time. Please try again later."
 
     def show_help_button(self, show: bool = True):
         """Show or hide the help button based on sentiment analysis"""
         try:
-            logging.info(f"Attempting to {'show' if show else 'hide'} help button for {self.name}")
+            logging.info(
+                f"Attempting to {'show' if show else 'hide'} help button for {self.name}"
+            )
             if show and self.help_button is not None:
                 # Remove the button first in case it's already packed
                 self.help_button.pack_forget()
-                
+
                 # Pack the help button to the left of the send button
-                self.help_button.pack(side=tk.RIGHT, padx=(0, 5), before=self.send_button)
-                
+                self.help_button.pack(
+                    side=tk.RIGHT, padx=(0, 5), before=self.send_button
+                )
+
                 # Force button to be visible and on top
                 self.help_button.lift()
                 self.help_button.update()
-                
+
                 # Force the buttons frame to update
                 self.buttons_frame.update_idletasks()
                 self.buttons_frame.update()
-                
+
                 # Force main window update
                 self.window.update_idletasks()
                 self.window.update()
-                
+
                 logging.info(f"Help button shown for {self.name}")
             elif not show and self.help_button is not None:
                 self.help_button.pack_forget()
@@ -631,28 +747,30 @@ class ChatWindow:
         except Exception as e:
             logging.error(f"Error managing help button visibility: {e}")
             import traceback
+
             traceback.print_exc()
 
     def update_sentiment_status(self, sentiment: str):
         """Update UI based on sentiment analysis results"""
         try:
             logging.info(f"Updating sentiment status for {self.name}: {sentiment}")
-            
+
             # Schedule the UI updates to run in the main thread
             def update_ui():
                 self.show_help_button(True)
-                
+
                 # Force window refresh
                 self.window.update_idletasks()
                 self.window.update()
-            
+
             # Ensure UI updates happen in the main thread
             if self.window.winfo_exists():
                 self.window.after(0, update_ui)
-                
+
         except Exception as e:
             logging.error(f"Error updating sentiment status: {e}")
             import traceback
+
             traceback.print_exc()
 
 
@@ -661,7 +779,9 @@ def load_scammer_info():
         with open("config.json", "r") as f:
             config = json.load(f)
             # Prefer phone over email if both exist
-            return config.get("scammer_phone") or config.get("scammer_email") or "scammer"
+            return (
+                config.get("scammer_phone") or config.get("scammer_email") or "scammer"
+            )
     except Exception as e:
         logging.error(f"Error loading scammer info: {e}")
         return "scammer"
@@ -688,10 +808,18 @@ class MessengerChat:
             self.alert_queue, reset_callback=self.reset_chat
         )
         self.scammer_window = ChatWindow(
-            self.scammer_id, "victim", self.client, self.handle_message, self.stop_application
+            self.scammer_id,
+            "victim",
+            self.client,
+            self.handle_message,
+            self.stop_application,
         )
         self.victim_window = ChatWindow(
-            "victim", self.scammer_id, self.client, self.handle_message, self.stop_application
+            "victim",
+            self.scammer_id,
+            self.client,
+            self.handle_message,
+            self.stop_application,
         )
 
         print("Positioning windows...")
@@ -742,7 +870,7 @@ class MessengerChat:
         monitor_height = MonitorStyle.WINDOW_HEIGHT
 
         scammer_x = (screen_width // 4) - (chat_width // 2)
-        scammer_y = (screen_height // 2) - (chat_height // 2)
+        scammer_y = (screen_height // 1) - (chat_height // 1)
         self.scammer_window.window.geometry(
             f"{chat_width}x{chat_height}+{scammer_x}+{scammer_y}"
         )
@@ -867,13 +995,13 @@ class MessengerChat:
                         message_range=f"Messages {start_msg} - {end_msg} (Window of {self.window_size})",
                     )
                     self.alert_queue.put(alert)
-                    
+
                     # Update the chat windows with sentiment status
                     if sender == self.scammer_id:
                         self.victim_window.update_sentiment_status(results.sentiment)
                     else:
                         self.scammer_window.update_sentiment_status(results.sentiment)
-                    
+
                     logging.info(
                         f"Analysis results for messages {start_msg}-{end_msg}: {results.sentiment}"
                     )

@@ -15,9 +15,6 @@ class DemoSetupWindow:
         self.email_var = tk.StringVar()
         self.timestamp_var = tk.StringVar()
         
-        # Set default timestamp
-        self.timestamp_var.set("00:00")
-        
         # This will store the demo configuration after the window closes
         self.demo_data = None
         
@@ -54,7 +51,7 @@ class DemoSetupWindow:
         line_number_entry.pack(side=tk.LEFT)
         
         # Add input validation and auto-focus
-        country_code_entry.config(validate="key", validatecommand=(frame.register(lambda P: len(P) <= 2 and (P == "" or P.isdigit())), '%P'))
+        country_code_entry.config(validate="key", validatecommand=(frame.register(lambda P: len(P) <= 3 and (P == "" or P.isdigit())), '%P'))
         area_code_entry.config(validate="key", validatecommand=(frame.register(lambda P: len(P) <= 3 and (P == "" or P.isdigit())), '%P'))
         prefix_entry.config(validate="key", validatecommand=(frame.register(lambda P: len(P) <= 3 and (P == "" or P.isdigit())), '%P'))
         line_number_entry.config(validate="key", validatecommand=(frame.register(lambda P: len(P) <= 4 and (P == "" or P.isdigit())), '%P'))

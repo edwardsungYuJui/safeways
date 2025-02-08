@@ -2,9 +2,10 @@
 
 Real-time chat monitoring system with AI-powered scam detection using OpenAI. Features parent monitoring interface and dual chat windows for conversation simulation.
 
-# Download LLAMA model
-go to https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/tree/main and download a model
-Add LLAMA_MODEL_PATH in .env file
+# Download OLLAMA
+go to [text](https://ollama.com/download) and download ollama
+Activate ollama
+In your terminal, run `ollama pull <model_name>"
 
 ## Quick Start
 
@@ -19,7 +20,14 @@ Add LLAMA_MODEL_PATH in .env file
    Link: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/tree/main
    - Create `.env` file:
    ```
-   LLAMA_MODEL_PATH= "path to the model"
+   OPENAI_API_KEY=""
+   LLAMA_MODEL_PATH=""
+   EMAIL_API_KEY=""
+   PHONE_API_KEY=""
+   SAFE_BROWSING_API_KEY=""
+   NUMVERIFY_PHONE_API_KEY=""
+   TRESTLE_PHONE_API_KEY=""
+   ABSTRACT_PHONE_API_KEY=""
    ```
 
 3. **Run Application**

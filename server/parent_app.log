@@ -1,110 +1,766 @@
-2025-02-07 21:14:57,870 - INFO - Starting sentiment analysis
-2025-02-07 21:14:57,872 - DEBUG - Prompt length: 549
-2025-02-07 21:14:57,872 - DEBUG - Prompt:
+2025-02-08 09:10:23,744 - INFO - Starting sentiment analysis
+2025-02-08 09:10:23,746 - INFO - Starting response generation...
+2025-02-08 09:10:23,750 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-02-08 09:10:23,750 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10405e000>
+2025-02-08 09:10:23,750 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:23,750 - DEBUG - send_request_headers.complete
+2025-02-08 09:10:23,750 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:10:23,751 - DEBUG - send_request_body.complete
+2025-02-08 09:10:23,751 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:30,347 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:10:30 GMT'), (b'Content-Length', b'551')])
+2025-02-08 09:10:30,349 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:10:30,349 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:10:30,349 - DEBUG - receive_response_body.complete
+2025-02-08 09:10:30,350 - DEBUG - response_closed.started
+2025-02-08 09:10:30,350 - DEBUG - response_closed.complete
+2025-02-08 09:10:30,353 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be randomly generated text, which often is a red flag for scams."}
+2025-02-08 09:10:30,353 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be randomly generated text, which often is a red flag for scams."}
+2025-02-08 09:10:30,353 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be randomly generated text, which often is a red flag for scams."}
+2025-02-08 09:10:30,353 - INFO - json_str:{"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be randomly generated text, which often is a red flag for scams."}
+2025-02-08 09:10:30,353 - INFO - explanation:The message appears to be randomly generated text, which often is a red flag for scams.
+2025-02-08 09:10:30,356 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:30,356 - DEBUG - send_request_headers.complete
+2025-02-08 09:10:30,356 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:10:30,356 - DEBUG - send_request_body.complete
+2025-02-08 09:10:30,356 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:31,484 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:10:31 GMT'), (b'Content-Length', b'376')])
+2025-02-08 09:10:31,485 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:10:31,485 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:10:31,485 - DEBUG - receive_response_body.complete
+2025-02-08 09:10:31,485 - DEBUG - response_closed.started
+2025-02-08 09:10:31,485 - DEBUG - response_closed.complete
+2025-02-08 09:10:31,486 - INFO - reason_valid:True
+2025-02-08 09:10:31,486 - INFO - Invalid analysis result, retrying (attempt 1)...
+2025-02-08 09:10:31,486 - INFO - Starting response generation...
+2025-02-08 09:10:31,488 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:31,488 - DEBUG - send_request_headers.complete
+2025-02-08 09:10:31,489 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:10:31,489 - DEBUG - send_request_body.complete
+2025-02-08 09:10:31,489 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:34,075 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:10:34 GMT'), (b'Content-Length', b'551')])
+2025-02-08 09:10:34,075 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:10:34,076 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:10:34,076 - DEBUG - receive_response_body.complete
+2025-02-08 09:10:34,076 - DEBUG - response_closed.started
+2025-02-08 09:10:34,076 - DEBUG - response_closed.complete
+2025-02-08 09:10:34,077 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains random characters, which is a red flag for suspicious activity."}
+2025-02-08 09:10:34,077 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains random characters, which is a red flag for suspicious activity."}
+2025-02-08 09:10:34,077 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains random characters, which is a red flag for suspicious activity."}
+2025-02-08 09:10:34,077 - INFO - json_str:{"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains random characters, which is a red flag for suspicious activity."}
+2025-02-08 09:10:34,077 - INFO - explanation:The message contains random characters, which is a red flag for suspicious activity.
+2025-02-08 09:10:34,079 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:34,079 - DEBUG - send_request_headers.complete
+2025-02-08 09:10:34,079 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:10:34,080 - DEBUG - send_request_body.complete
+2025-02-08 09:10:34,080 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:35,357 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:10:35 GMT'), (b'Content-Length', b'383')])
+2025-02-08 09:10:35,358 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:10:35,358 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:10:35,358 - DEBUG - receive_response_body.complete
+2025-02-08 09:10:35,358 - DEBUG - response_closed.started
+2025-02-08 09:10:35,358 - DEBUG - response_closed.complete
+2025-02-08 09:10:35,359 - INFO - reason_valid:False
+2025-02-08 09:10:35,359 - INFO - Invalid analysis result, retrying (attempt 2)...
+2025-02-08 09:10:35,359 - INFO - Starting response generation...
+2025-02-08 09:10:35,359 - INFO - prompt:
+                The scam detecting result validator has validated your conclusion and determined it is incorrect for the 2th time. 
+                Please reconsider your initial answer and provide another response.
 
-        You are a helpful assistant. Please analyze the user's messages in a concise manner.
-        Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
-        Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
-        Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".
-        
-        Analyze these chat messages briefly and respond *only* with JSON.
-        
-        Messages:
-        Sender: hello
-        
-2025-02-07 21:14:57,872 - INFO - Starting response generation...
-2025-02-07 21:14:57,878 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
-2025-02-07 21:14:57,878 - DEBUG - connect_tcp.failed exception=ConnectError(ConnectionRefusedError(61, 'Connection refused'))
-2025-02-07 21:14:57,879 - ERROR - Unexpected error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
-Traceback (most recent call last):
-  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 126, in analyze_sentiment
-    response = first_guardian(
-               ^^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/server/guardian.py", line 36, in first_guardian
-    response: ChatResponse = chat(
-                             ^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 333, in chat
-    return self._request(
-           ^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 178, in _request
-    return cls(**self._request_raw(*args, **kwargs).json())
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 124, in _request_raw
-    raise ConnectionError(CONNECTION_ERROR_MESSAGE) from None
-ConnectionError: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
-2025-02-07 21:25:43,039 - INFO - Starting sentiment analysis
-2025-02-07 21:25:43,041 - DEBUG - Prompt length: 1006
-2025-02-07 21:25:43,041 - DEBUG - Prompt:
 
-            You are a scam detecting assistant. Given the timestamp is in out the business hour and the average valid score of 0.0 from the phone preset fields pipeline, and the content below, determine to what extent is this text conversation a safe message and provide 5 reasons for this conclusion.
+                
+            You are a scam detecting assistant. Given the timestamp is out of the business hour, the average valid phone score of 33 from the preset fields pipeline , and the message content below, determine to what extent is this text conversation a safe message and provide the entire thought process behind this conclusion.
             Please analyze the user's messages in a concise manner, following the format below.
+
+
             Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
-            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation" (5 bullet points for the conclusion).
-            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".
-            Note that for explanation key, you MUST output 5 bullet points of reasonings.
-            Analyze these chat messages briefly and respond *only* with JSON.
-         
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".  Analyze these chat messages briefly and respond *only* with JSON.
+
+
             Messages:
-            Sender: hello scam
+
+
+            ewrwrw4r
             
-2025-02-07 21:25:43,041 - INFO - Starting response generation...
-2025-02-07 21:25:43,047 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
-2025-02-07 21:25:43,047 - DEBUG - connect_tcp.failed exception=ConnectError(ConnectionRefusedError(61, 'Connection refused'))
-2025-02-07 21:25:43,047 - ERROR - Unexpected error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
+2025-02-08 09:10:35,361 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:35,361 - DEBUG - send_request_headers.complete
+2025-02-08 09:10:35,361 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:10:35,362 - DEBUG - send_request_body.complete
+2025-02-08 09:10:35,362 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:37,752 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:10:37 GMT'), (b'Content-Length', b'468')])
+2025-02-08 09:10:37,753 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:10:37,753 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:10:37,754 - DEBUG - receive_response_body.complete
+2025-02-08 09:10:37,754 - DEBUG - response_closed.started
+2025-02-08 09:10:37,754 - DEBUG - response_closed.complete
+2025-02-08 09:10:37,754 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":false,"explanation":""}
+2025-02-08 09:10:37,755 - INFO - {"sentiment":"SCAM","alert_needed":false,"explanation":""}
+2025-02-08 09:10:37,755 - INFO - {"sentiment":"SCAM","alert_needed":false,"explanation":""}
+2025-02-08 09:10:37,755 - INFO - json_str:{"sentiment":"SCAM","alert_needed":false,"explanation":""}
+2025-02-08 09:10:37,755 - INFO - explanation:
+2025-02-08 09:10:37,756 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:37,757 - DEBUG - send_request_headers.complete
+2025-02-08 09:10:37,757 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:10:37,757 - DEBUG - send_request_body.complete
+2025-02-08 09:10:37,757 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:10:38,851 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:10:38 GMT'), (b'Content-Length', b'377')])
+2025-02-08 09:10:38,852 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:10:38,852 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:10:38,853 - DEBUG - receive_response_body.complete
+2025-02-08 09:10:38,853 - DEBUG - response_closed.started
+2025-02-08 09:10:38,853 - DEBUG - response_closed.complete
+2025-02-08 09:10:38,853 - INFO - reason_valid:True
+2025-02-08 09:22:48,718 - INFO - Starting sentiment analysis
+2025-02-08 09:22:48,719 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
 Traceback (most recent call last):
-  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 146, in analyze_sentiment
-    response = first_guardian(
-               ^^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/server/guardian.py", line 36, in first_guardian
-    response: ChatResponse = chat(
-                             ^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 333, in chat
-    return self._request(
-           ^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 178, in _request
-    return cls(**self._request_raw(*args, **kwargs).json())
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 124, in _request_raw
-    raise ConnectionError(CONNECTION_ERROR_MESSAGE) from None
-ConnectionError: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
-2025-02-07 21:27:53,203 - INFO - Starting sentiment analysis
-2025-02-07 21:27:53,204 - ERROR - Unexpected error: cannot access local variable 'prompt' where it is not associated with a value
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 09:25:20,734 - INFO - Starting sentiment analysis
+2025-02-08 09:25:20,738 - INFO - Starting response generation...
+2025-02-08 09:25:20,742 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-02-08 09:25:20,743 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10985c650>
+2025-02-08 09:25:20,743 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:20,743 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:20,743 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:20,743 - DEBUG - send_request_body.complete
+2025-02-08 09:25:20,743 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:25,900 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:25 GMT'), (b'Content-Length', b'633')])
+2025-02-08 09:25:25,904 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:25,905 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:25,905 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:25,905 - DEBUG - response_closed.started
+2025-02-08 09:25:25,905 - DEBUG - response_closed.complete
+2025-02-08 09:25:25,908 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from an unsolicited number, which is often a sign of a scam. Additionally, the timestamp is outside of business hours, adding to the suspicion."}
+2025-02-08 09:25:25,908 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from an unsolicited number, which is often a sign of a scam. Additionally, the timestamp is outside of business hours, adding to the suspicion."}
+2025-02-08 09:25:25,908 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from an unsolicited number, which is often a sign of a scam. Additionally, the timestamp is outside of business hours, adding to the suspicion."}
+2025-02-08 09:25:25,909 - INFO - json_str:{"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from an unsolicited number, which is often a sign of a scam. Additionally, the timestamp is outside of business hours, adding to the suspicion."}
+2025-02-08 09:25:25,909 - INFO - explanation:The message appears to be from an unsolicited number, which is often a sign of a scam. Additionally, the timestamp is outside of business hours, adding to the suspicion.
+2025-02-08 09:25:25,913 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:25,913 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:25,914 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:25,915 - DEBUG - send_request_body.complete
+2025-02-08 09:25:25,915 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:27,277 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:27 GMT'), (b'Content-Length', b'382')])
+2025-02-08 09:25:27,278 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:27,278 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:27,278 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:27,279 - DEBUG - response_closed.started
+2025-02-08 09:25:27,279 - DEBUG - response_closed.complete
+2025-02-08 09:25:27,279 - INFO - reason_valid:True
+2025-02-08 09:25:27,279 - INFO - Invalid analysis result, retrying (attempt 1)...
+2025-02-08 09:25:27,279 - INFO - Starting response generation...
+2025-02-08 09:25:27,281 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:27,282 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:27,282 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:27,282 - DEBUG - send_request_body.complete
+2025-02-08 09:25:27,282 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:30,841 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:30 GMT'), (b'Content-Length', b'656')])
+2025-02-08 09:25:30,842 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:30,843 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:30,843 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:30,843 - DEBUG - response_closed.started
+2025-02-08 09:25:30,843 - DEBUG - response_closed.complete
+2025-02-08 09:25:30,844 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":false,"explanation":"The message is a single line of text with no context, making it difficult to assess. However, since the phone score is 0, which indicates potential scam activity, this message raises concern."}
+2025-02-08 09:25:30,844 - INFO - {"sentiment":"SCAM","alert_needed":false,"explanation":"The message is a single line of text with no context, making it difficult to assess. However, since the phone score is 0, which indicates potential scam activity, this message raises concern."}
+2025-02-08 09:25:30,844 - INFO - {"sentiment":"SCAM","alert_needed":false,"explanation":"The message is a single line of text with no context, making it difficult to assess. However, since the phone score is 0, which indicates potential scam activity, this message raises concern."}
+2025-02-08 09:25:30,844 - INFO - json_str:{"sentiment":"SCAM","alert_needed":false,"explanation":"The message is a single line of text with no context, making it difficult to assess. However, since the phone score is 0, which indicates potential scam activity, this message raises concern."}
+2025-02-08 09:25:30,844 - INFO - explanation:The message is a single line of text with no context, making it difficult to assess. However, since the phone score is 0, which indicates potential scam activity, this message raises concern.
+2025-02-08 09:25:30,846 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:30,846 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:30,847 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:30,847 - DEBUG - send_request_body.complete
+2025-02-08 09:25:30,847 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:32,020 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:32 GMT'), (b'Content-Length', b'349')])
+2025-02-08 09:25:32,021 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:32,022 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:32,022 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:32,022 - DEBUG - response_closed.started
+2025-02-08 09:25:32,022 - DEBUG - response_closed.complete
+2025-02-08 09:25:32,022 - INFO - reason_valid:False
+2025-02-08 09:25:32,022 - INFO - Invalid analysis result, retrying (attempt 2)...
+2025-02-08 09:25:32,022 - INFO - Starting response generation...
+2025-02-08 09:25:32,023 - INFO - prompt:
+                The scam detecting result validator has validated your conclusion and determined it is incorrect for the 2th time. 
+                Please reconsider your initial answer and provide another response.
+
+
+                
+            You are a scam detecting assistant. Given the timestamp is out of the business hour, the average valid phone score of 0 from the preset fields pipeline , and the message content below, determine to what extent is this text conversation a safe message and provide the entire thought process behind this conclusion.
+            Please analyze the user's messages in a concise manner, following the format below.
+
+
+            Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".  Analyze these chat messages briefly and respond *only* with JSON.
+
+
+            Messages:
+
+
+            324324324
+            
+2025-02-08 09:25:32,025 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:32,025 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:32,025 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:32,025 - DEBUG - send_request_body.complete
+2025-02-08 09:25:32,025 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:35,050 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:35 GMT'), (b'Content-Length', b'569')])
+2025-02-08 09:25:35,051 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:35,051 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:35,051 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:35,051 - DEBUG - response_closed.started
+2025-02-08 09:25:35,051 - DEBUG - response_closed.complete
+2025-02-08 09:25:35,051 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":false,"explanation":"The message content appears to be a random string of numbers, possibly indicating fraudulent activity."}
+2025-02-08 09:25:35,051 - INFO - {"sentiment":"SCAM","alert_needed":false,"explanation":"The message content appears to be a random string of numbers, possibly indicating fraudulent activity."}
+2025-02-08 09:25:35,052 - INFO - {"sentiment":"SCAM","alert_needed":false,"explanation":"The message content appears to be a random string of numbers, possibly indicating fraudulent activity."}
+2025-02-08 09:25:35,052 - INFO - json_str:{"sentiment":"SCAM","alert_needed":false,"explanation":"The message content appears to be a random string of numbers, possibly indicating fraudulent activity."}
+2025-02-08 09:25:35,052 - INFO - explanation:The message content appears to be a random string of numbers, possibly indicating fraudulent activity.
+2025-02-08 09:25:35,053 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:35,053 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:35,053 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:35,053 - DEBUG - send_request_body.complete
+2025-02-08 09:25:35,053 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:36,330 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:36 GMT'), (b'Content-Length', b'382')])
+2025-02-08 09:25:36,332 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:36,333 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:36,333 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:36,333 - DEBUG - response_closed.started
+2025-02-08 09:25:36,333 - DEBUG - response_closed.complete
+2025-02-08 09:25:36,334 - INFO - reason_valid:True
+2025-02-08 09:25:36,340 - INFO - Starting sentiment analysis
+2025-02-08 09:25:36,348 - INFO - Starting response generation...
+2025-02-08 09:25:36,353 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:36,353 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:36,353 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:36,353 - DEBUG - send_request_body.complete
+2025-02-08 09:25:36,353 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:39,185 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:39 GMT'), (b'Content-Length', b'542')])
+2025-02-08 09:25:39,185 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:39,185 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:39,185 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:39,185 - DEBUG - response_closed.started
+2025-02-08 09:25:39,185 - DEBUG - response_closed.complete
+2025-02-08 09:25:39,185 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from a suspicious source, likely spam or phishing."}
+2025-02-08 09:25:39,186 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from a suspicious source, likely spam or phishing."}
+2025-02-08 09:25:39,186 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from a suspicious source, likely spam or phishing."}
+2025-02-08 09:25:39,186 - INFO - json_str:{"sentiment":"SCAM","alert_needed":true,"explanation":"The message appears to be from a suspicious source, likely spam or phishing."}
+2025-02-08 09:25:39,186 - INFO - explanation:The message appears to be from a suspicious source, likely spam or phishing.
+2025-02-08 09:25:39,187 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:39,187 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:39,187 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:39,187 - DEBUG - send_request_body.complete
+2025-02-08 09:25:39,187 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:40,380 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:40 GMT'), (b'Content-Length', b'377')])
+2025-02-08 09:25:40,381 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:40,381 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:40,381 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:40,381 - DEBUG - response_closed.started
+2025-02-08 09:25:40,381 - DEBUG - response_closed.complete
+2025-02-08 09:25:40,382 - INFO - reason_valid:False
+2025-02-08 09:25:40,382 - INFO - Invalid analysis result, retrying (attempt 1)...
+2025-02-08 09:25:40,382 - INFO - Starting response generation...
+2025-02-08 09:25:40,382 - INFO - prompt:
+                The scam detecting result validator has validated your conclusion and determined it is incorrect for the 1th time. 
+                Please reconsider your initial answer and provide another response.
+
+
+                
+            You are a scam detecting assistant. Given the timestamp is out of the business hour, the average valid phone score of 0 from the preset fields pipeline , and the message content below, determine to what extent is this text conversation a safe message and provide the entire thought process behind this conclusion.
+            Please analyze the user's messages in a concise manner, following the format below.
+
+
+            Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".  Analyze these chat messages briefly and respond *only* with JSON.
+
+
+            Messages:
+
+
+            324234234
+            
+2025-02-08 09:25:40,384 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:40,384 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:40,384 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:40,384 - DEBUG - send_request_body.complete
+2025-02-08 09:25:40,384 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:43,298 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:43 GMT'), (b'Content-Length', b'547')])
+2025-02-08 09:25:43,300 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:43,300 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:43,300 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:43,300 - DEBUG - response_closed.started
+2025-02-08 09:25:43,301 - DEBUG - response_closed.complete
+2025-02-08 09:25:43,301 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains a phone number. It's unusual for business use unless it's B2B."}
+2025-02-08 09:25:43,301 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains a phone number. It's unusual for business use unless it's B2B."}
+2025-02-08 09:25:43,301 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains a phone number. It's unusual for business use unless it's B2B."}
+2025-02-08 09:25:43,301 - INFO - json_str:{"sentiment":"SCAM","alert_needed":true,"explanation":"The message contains a phone number. It's unusual for business use unless it's B2B."}
+2025-02-08 09:25:43,301 - INFO - explanation:The message contains a phone number. It's unusual for business use unless it's B2B.
+2025-02-08 09:25:43,303 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:43,303 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:43,303 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:43,303 - DEBUG - send_request_body.complete
+2025-02-08 09:25:43,303 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:44,481 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:44 GMT'), (b'Content-Length', b'376')])
+2025-02-08 09:25:44,483 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:44,483 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:44,484 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:44,484 - DEBUG - response_closed.started
+2025-02-08 09:25:44,484 - DEBUG - response_closed.complete
+2025-02-08 09:25:44,484 - INFO - reason_valid:False
+2025-02-08 09:25:44,484 - INFO - Invalid analysis result, retrying (attempt 2)...
+2025-02-08 09:25:44,484 - INFO - Starting response generation...
+2025-02-08 09:25:44,484 - INFO - prompt:
+                The scam detecting result validator has validated your conclusion and determined it is incorrect for the 2th time. 
+                Please reconsider your initial answer and provide another response.
+
+
+                
+            You are a scam detecting assistant. Given the timestamp is out of the business hour, the average valid phone score of 0 from the preset fields pipeline , and the message content below, determine to what extent is this text conversation a safe message and provide the entire thought process behind this conclusion.
+            Please analyze the user's messages in a concise manner, following the format below.
+
+
+            Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".  Analyze these chat messages briefly and respond *only* with JSON.
+
+
+            Messages:
+
+
+            324234234
+            
+2025-02-08 09:25:44,487 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:44,488 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:44,488 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:44,488 - DEBUG - send_request_body.complete
+2025-02-08 09:25:44,489 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:47,473 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:47 GMT'), (b'Content-Length', b'557')])
+2025-02-08 09:25:47,473 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:47,474 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:47,474 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:47,474 - DEBUG - response_closed.started
+2025-02-08 09:25:47,474 - DEBUG - response_closed.complete
+2025-02-08 09:25:47,474 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":true,"explanation":"The user provided a message with the timestamp outside of business hours, which is unusual."}
+2025-02-08 09:25:47,474 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The user provided a message with the timestamp outside of business hours, which is unusual."}
+2025-02-08 09:25:47,474 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The user provided a message with the timestamp outside of business hours, which is unusual."}
+2025-02-08 09:25:47,475 - INFO - json_str:{"sentiment":"SCAM","alert_needed":true,"explanation":"The user provided a message with the timestamp outside of business hours, which is unusual."}
+2025-02-08 09:25:47,475 - INFO - explanation:The user provided a message with the timestamp outside of business hours, which is unusual.
+2025-02-08 09:25:47,476 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:47,476 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:47,476 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:47,476 - DEBUG - send_request_body.complete
+2025-02-08 09:25:47,476 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:48,665 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:48 GMT'), (b'Content-Length', b'378')])
+2025-02-08 09:25:48,666 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:48,667 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:48,667 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:48,667 - DEBUG - response_closed.started
+2025-02-08 09:25:48,667 - DEBUG - response_closed.complete
+2025-02-08 09:25:48,667 - INFO - reason_valid:False
+2025-02-08 09:25:48,667 - INFO - Invalid analysis result, retrying (attempt 3)...
+2025-02-08 09:25:48,668 - INFO - Starting response generation...
+2025-02-08 09:25:48,668 - INFO - prompt:
+                The scam detecting result validator has validated your conclusion and determined it is incorrect for the 3th time. 
+                Please reconsider your initial answer and provide another response.
+
+
+                
+            You are a scam detecting assistant. Given the timestamp is out of the business hour, the average valid phone score of 0 from the preset fields pipeline , and the message content below, determine to what extent is this text conversation a safe message and provide the entire thought process behind this conclusion.
+            Please analyze the user's messages in a concise manner, following the format below.
+
+
+            Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".  Analyze these chat messages briefly and respond *only* with JSON.
+
+
+            Messages:
+
+
+            324234234
+            
+2025-02-08 09:25:48,669 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:48,670 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:48,670 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:48,670 - DEBUG - send_request_body.complete
+2025-02-08 09:25:48,670 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:51,332 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:51 GMT'), (b'Content-Length', b'513')])
+2025-02-08 09:25:51,334 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:51,334 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:51,335 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:51,335 - DEBUG - response_closed.started
+2025-02-08 09:25:51,335 - DEBUG - response_closed.complete
+2025-02-08 09:25:51,336 - DEBUG - Raw response received: {"sentiment":"SCAM","alert_needed":true,"explanation":"The user has not provided any message content."}
+2025-02-08 09:25:51,336 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The user has not provided any message content."}
+2025-02-08 09:25:51,336 - INFO - {"sentiment":"SCAM","alert_needed":true,"explanation":"The user has not provided any message content."}
+2025-02-08 09:25:51,336 - INFO - json_str:{"sentiment":"SCAM","alert_needed":true,"explanation":"The user has not provided any message content."}
+2025-02-08 09:25:51,336 - INFO - explanation:The user has not provided any message content.
+2025-02-08 09:25:51,338 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:51,338 - DEBUG - send_request_headers.complete
+2025-02-08 09:25:51,338 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 09:25:51,338 - DEBUG - send_request_body.complete
+2025-02-08 09:25:51,338 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 09:25:52,522 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 14:25:52 GMT'), (b'Content-Length', b'382')])
+2025-02-08 09:25:52,523 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 09:25:52,524 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 09:25:52,524 - DEBUG - receive_response_body.complete
+2025-02-08 09:25:52,524 - DEBUG - response_closed.started
+2025-02-08 09:25:52,524 - DEBUG - response_closed.complete
+2025-02-08 09:25:52,525 - INFO - reason_valid:True
+2025-02-08 09:26:21,913 - INFO - Starting sentiment analysis
+2025-02-08 09:26:21,914 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
 Traceback (most recent call last):
-  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 170, in analyze_sentiment
-    logger.debug(f"Prompt length: {len(prompt)}")
-                                       ^^^^^^
-UnboundLocalError: cannot access local variable 'prompt' where it is not associated with a value
-2025-02-07 21:32:21,973 - INFO - Starting sentiment analysis
-2025-02-07 21:32:21,974 - ERROR - Unexpected error: cannot access local variable 'prompt' where it is not associated with a value
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 09:32:54,278 - INFO - Starting sentiment analysis
+2025-02-08 09:32:54,281 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
 Traceback (most recent call last):
-  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 170, in analyze_sentiment
-    logger.debug(f"Prompt length: {len(prompt)}")
-                                       ^^^^^^
-UnboundLocalError: cannot access local variable 'prompt' where it is not associated with a value
-2025-02-07 21:37:05,196 - INFO - Starting sentiment analysis
-2025-02-07 21:37:05,199 - ERROR - Unexpected error: 'EmailCheck' object has no attribute 'email'
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 09:40:54,575 - INFO - Starting sentiment analysis
+2025-02-08 09:40:54,577 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
 Traceback (most recent call last):
-  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 153, in analyze_sentiment
-    email_score = email_checker.check_email(email)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/API_check/email_check.py", line 16, in check_email
-    url = f"https://emailvalidation.abstractapi.com/v1/?api_key={self.api_key}&email={self.email}"
-                                                                                      ^^^^^^^^^^
-AttributeError: 'EmailCheck' object has no attribute 'email'
-2025-02-07 21:44:24,532 - INFO - Starting sentiment analysis
-2025-02-07 21:44:24,533 - ERROR - Unexpected error: cannot access local variable 'prompt' where it is not associated with a value
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 09:57:19,771 - INFO - Starting sentiment analysis
+2025-02-08 09:57:19,773 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
 Traceback (most recent call last):
-  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 170, in analyze_sentiment
-    logger.debug(f"Prompt length: {len(prompt)}")
-                                       ^^^^^^
-UnboundLocalError: cannot access local variable 'prompt' where it is not associated with a value
-2025-02-07 21:47:33,396 - INFO - Starting sentiment analysis
-2025-02-07 21:47:33,398 - ERROR - Unexpected error: 'EmailCheck' object has no attribute 'email'
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 10:22:12,866 - INFO - Starting sentiment analysis
+2025-02-08 10:22:12,868 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
 Traceback (most recent call last):
-  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 153, in analyze_sentiment
-    email_score = email_checker.check_email(email)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/edwardsung/Documents/tartanhacks/API_check/email_check.py", line 16, in check_email
-    url = f"https://emailvalidation.abstractapi.com/v1/?api_key={self.api_key}&email={self.email}"
-                                                                                      ^^^^^^^^^^
-AttributeError: 'EmailCheck' object has no attribute 'email'
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 10:42:43,662 - INFO - Starting sentiment analysis
+2025-02-08 10:42:43,665 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 10:46:13,485 - INFO - Starting sentiment analysis
+2025-02-08 10:46:13,487 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 11:19:22,217 - INFO - Starting sentiment analysis
+2025-02-08 11:19:22,226 - DEBUG - Starting new HTTPS connection (1): safebrowsing.googleapis.com:443
+2025-02-08 11:19:22,288 - DEBUG - https://safebrowsing.googleapis.com:443 "POST /v4/threatMatches:find?key=AIzaSyD7I31H8G0i0yeHMVF1MtiLnFsInk1inLs HTTP/1.1" 400 611
+2025-02-08 11:19:22,289 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 11:27:58,650 - INFO - Starting sentiment analysis
+2025-02-08 11:27:58,656 - DEBUG - Starting new HTTPS connection (1): safebrowsing.googleapis.com:443
+2025-02-08 11:27:58,714 - DEBUG - https://safebrowsing.googleapis.com:443 "POST /v4/threatMatches:find?key=AIzaSyD7I31H8G0i0yeHMVF1MtiLnFsInk1inLs HTTP/1.1" 400 611
+2025-02-08 11:27:58,715 - ERROR - Unexpected error: cannot access local variable 'phone' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 162, in analyze_sentiment
+    if phone:
+       ^^^^^
+UnboundLocalError: cannot access local variable 'phone' where it is not associated with a value
+2025-02-08 11:57:57,400 - INFO - Starting sentiment analysis
+2025-02-08 11:57:57,404 - INFO - timestamp_text: out of the business hour
+2025-02-08 11:57:57,404 - INFO - Starting response generation...
+2025-02-08 11:57:57,409 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-02-08 11:57:57,409 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x105786bd0>
+2025-02-08 11:57:57,409 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:57:57,409 - DEBUG - send_request_headers.complete
+2025-02-08 11:57:57,409 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:57:57,409 - DEBUG - send_request_body.complete
+2025-02-08 11:57:57,410 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:05,744 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:05 GMT'), (b'Content-Length', b'768')])
+2025-02-08 11:58:05,750 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:05,751 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:05,751 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:05,751 - DEBUG - response_closed.started
+2025-02-08 11:58:05,752 - DEBUG - response_closed.complete
+2025-02-08 11:58:05,764 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:05,764 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:05,764 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:05,764 - DEBUG - send_request_body.complete
+2025-02-08 11:58:05,764 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:07,070 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:07 GMT'), (b'Content-Length', b'344')])
+2025-02-08 11:58:07,070 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:07,070 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:07,070 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:07,071 - DEBUG - response_closed.started
+2025-02-08 11:58:07,071 - DEBUG - response_closed.complete
+2025-02-08 11:58:07,071 - INFO - current iteration: 0, reason_valid: False
+2025-02-08 11:58:07,071 - INFO - Invalid analysis result, retrying (attempt 1)...
+2025-02-08 11:58:07,071 - INFO - Starting response generation...
+2025-02-08 11:58:07,073 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:07,074 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:07,074 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:07,074 - DEBUG - send_request_body.complete
+2025-02-08 11:58:07,074 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:10,561 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:10 GMT'), (b'Content-Length', b'614')])
+2025-02-08 11:58:10,562 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:10,562 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:10,562 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:10,562 - DEBUG - response_closed.started
+2025-02-08 11:58:10,562 - DEBUG - response_closed.complete
+2025-02-08 11:58:10,564 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:10,564 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:10,564 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:10,565 - DEBUG - send_request_body.complete
+2025-02-08 11:58:10,565 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:11,750 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:11 GMT'), (b'Content-Length', b'374')])
+2025-02-08 11:58:11,750 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:11,750 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:11,750 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:11,750 - DEBUG - response_closed.started
+2025-02-08 11:58:11,750 - DEBUG - response_closed.complete
+2025-02-08 11:58:11,750 - INFO - current iteration: 1, reason_valid: True
+2025-02-08 11:58:11,750 - INFO - The reason is valid, returning the result
+2025-02-08 11:58:11,753 - INFO - Starting sentiment analysis
+2025-02-08 11:58:11,757 - INFO - timestamp_text: out of the business hour
+2025-02-08 11:58:11,757 - INFO - Starting response generation...
+2025-02-08 11:58:11,757 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:11,758 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:11,758 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:11,758 - DEBUG - send_request_body.complete
+2025-02-08 11:58:11,758 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:14,953 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:14 GMT'), (b'Content-Length', b'638')])
+2025-02-08 11:58:14,953 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:14,954 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:14,954 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:14,954 - DEBUG - response_closed.started
+2025-02-08 11:58:14,954 - DEBUG - response_closed.complete
+2025-02-08 11:58:14,956 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:14,956 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:14,956 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:14,956 - DEBUG - send_request_body.complete
+2025-02-08 11:58:14,956 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:16,021 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:16 GMT'), (b'Content-Length', b'373')])
+2025-02-08 11:58:16,022 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:16,022 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:16,022 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:16,022 - DEBUG - response_closed.started
+2025-02-08 11:58:16,022 - DEBUG - response_closed.complete
+2025-02-08 11:58:16,023 - INFO - current iteration: 0, reason_valid: False
+2025-02-08 11:58:16,023 - INFO - Invalid analysis result, retrying (attempt 1)...
+2025-02-08 11:58:16,023 - INFO - Starting response generation...
+2025-02-08 11:58:16,025 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:16,025 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:16,025 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:16,026 - DEBUG - send_request_body.complete
+2025-02-08 11:58:16,026 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:18,807 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:18 GMT'), (b'Content-Length', b'556')])
+2025-02-08 11:58:18,808 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:18,808 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:18,809 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:18,809 - DEBUG - response_closed.started
+2025-02-08 11:58:18,809 - DEBUG - response_closed.complete
+2025-02-08 11:58:18,811 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:18,811 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:18,811 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:18,811 - DEBUG - send_request_body.complete
+2025-02-08 11:58:18,811 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:20,093 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:20 GMT'), (b'Content-Length', b'382')])
+2025-02-08 11:58:20,094 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:20,094 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:20,094 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:20,094 - DEBUG - response_closed.started
+2025-02-08 11:58:20,095 - DEBUG - response_closed.complete
+2025-02-08 11:58:20,095 - INFO - current iteration: 1, reason_valid: False
+2025-02-08 11:58:20,095 - INFO - Invalid analysis result, retrying (attempt 2)...
+2025-02-08 11:58:20,095 - INFO - Starting response generation...
+2025-02-08 11:58:20,097 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:20,098 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:20,098 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:20,098 - DEBUG - send_request_body.complete
+2025-02-08 11:58:20,098 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:25,486 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:25 GMT'), (b'Content-Length', b'624')])
+2025-02-08 11:58:25,487 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:25,487 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:25,487 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:25,487 - DEBUG - response_closed.started
+2025-02-08 11:58:25,487 - DEBUG - response_closed.complete
+2025-02-08 11:58:25,489 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:25,490 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:25,490 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:25,490 - DEBUG - send_request_body.complete
+2025-02-08 11:58:25,490 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:26,818 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:26 GMT'), (b'Content-Length', b'376')])
+2025-02-08 11:58:26,819 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:26,819 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:26,820 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:26,820 - DEBUG - response_closed.started
+2025-02-08 11:58:26,820 - DEBUG - response_closed.complete
+2025-02-08 11:58:26,820 - INFO - current iteration: 2, reason_valid: False
+2025-02-08 11:58:26,821 - INFO - Invalid analysis result, retrying (attempt 3)...
+2025-02-08 11:58:26,821 - INFO - Starting response generation...
+2025-02-08 11:58:26,822 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:26,823 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:26,823 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:26,823 - DEBUG - send_request_body.complete
+2025-02-08 11:58:26,823 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:31,387 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:31 GMT'), (b'Content-Length', b'592')])
+2025-02-08 11:58:31,387 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:31,387 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:31,387 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:31,387 - DEBUG - response_closed.started
+2025-02-08 11:58:31,388 - DEBUG - response_closed.complete
+2025-02-08 11:58:31,389 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:31,389 - DEBUG - send_request_headers.complete
+2025-02-08 11:58:31,389 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 11:58:31,389 - DEBUG - send_request_body.complete
+2025-02-08 11:58:31,389 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 11:58:32,576 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 16:58:32 GMT'), (b'Content-Length', b'380')])
+2025-02-08 11:58:32,577 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 11:58:32,577 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 11:58:32,577 - DEBUG - receive_response_body.complete
+2025-02-08 11:58:32,578 - DEBUG - response_closed.started
+2025-02-08 11:58:32,578 - DEBUG - response_closed.complete
+2025-02-08 11:58:32,580 - INFO - current iteration: 3, reason_valid: False
+2025-02-08 11:58:32,580 - INFO - Invalid analysis result, retrying (attempt 4)...
+2025-02-08 11:58:32,580 - INFO - After 4 iterations, the reason is not valid, returning SUSPICIOUS
+2025-02-08 12:53:03,456 - INFO - Starting sentiment analysis
+2025-02-08 12:53:03,459 - INFO - timestamp_text: out of the business hour
+2025-02-08 12:53:03,459 - INFO - Starting response generation...
+2025-02-08 12:53:03,463 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-02-08 12:53:03,463 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1072a5610>
+2025-02-08 12:53:03,464 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:03,464 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:03,464 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:03,464 - DEBUG - send_request_body.complete
+2025-02-08 12:53:03,464 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:10,603 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:10 GMT'), (b'Content-Length', b'630')])
+2025-02-08 12:53:10,608 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:10,609 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:10,609 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:10,609 - DEBUG - response_closed.started
+2025-02-08 12:53:10,609 - DEBUG - response_closed.complete
+2025-02-08 12:53:10,619 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:10,619 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:10,619 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:10,619 - DEBUG - send_request_body.complete
+2025-02-08 12:53:10,619 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:11,979 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:11 GMT'), (b'Content-Length', b'381')])
+2025-02-08 12:53:11,980 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:11,980 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:11,980 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:11,980 - DEBUG - response_closed.started
+2025-02-08 12:53:11,980 - DEBUG - response_closed.complete
+2025-02-08 12:53:11,981 - INFO - current iteration: 0, reason_valid: False
+2025-02-08 12:53:11,981 - INFO - Invalid analysis result, retrying (attempt 1)...
+2025-02-08 12:53:11,981 - INFO - Starting response generation...
+2025-02-08 12:53:11,984 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:11,984 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:11,984 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:11,984 - DEBUG - send_request_body.complete
+2025-02-08 12:53:11,984 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:14,697 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:14 GMT'), (b'Content-Length', b'551')])
+2025-02-08 12:53:14,698 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:14,699 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:14,699 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:14,699 - DEBUG - response_closed.started
+2025-02-08 12:53:14,700 - DEBUG - response_closed.complete
+2025-02-08 12:53:14,703 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:14,703 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:14,703 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:14,703 - DEBUG - send_request_body.complete
+2025-02-08 12:53:14,703 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:16,019 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:16 GMT'), (b'Content-Length', b'381')])
+2025-02-08 12:53:16,020 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:16,020 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:16,020 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:16,020 - DEBUG - response_closed.started
+2025-02-08 12:53:16,021 - DEBUG - response_closed.complete
+2025-02-08 12:53:16,021 - INFO - current iteration: 1, reason_valid: True
+2025-02-08 12:53:16,021 - INFO - The reason is valid, returning the result
+2025-02-08 12:53:16,026 - INFO - Starting sentiment analysis
+2025-02-08 12:53:16,031 - INFO - timestamp_text: out of the business hour
+2025-02-08 12:53:16,031 - INFO - Starting response generation...
+2025-02-08 12:53:16,032 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:16,033 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:16,033 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:16,033 - DEBUG - send_request_body.complete
+2025-02-08 12:53:16,033 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:19,501 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:19 GMT'), (b'Content-Length', b'639')])
+2025-02-08 12:53:19,523 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:19,524 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:19,525 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:19,525 - DEBUG - response_closed.started
+2025-02-08 12:53:19,526 - DEBUG - response_closed.complete
+2025-02-08 12:53:19,529 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:19,530 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:19,530 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:19,530 - DEBUG - send_request_body.complete
+2025-02-08 12:53:19,530 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:20,736 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:20 GMT'), (b'Content-Length', b'382')])
+2025-02-08 12:53:20,738 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:20,738 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:20,738 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:20,738 - DEBUG - response_closed.started
+2025-02-08 12:53:20,738 - DEBUG - response_closed.complete
+2025-02-08 12:53:20,739 - INFO - current iteration: 0, reason_valid: False
+2025-02-08 12:53:20,740 - INFO - Invalid analysis result, retrying (attempt 1)...
+2025-02-08 12:53:20,740 - INFO - Starting response generation...
+2025-02-08 12:53:20,743 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:20,745 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:20,746 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:20,747 - DEBUG - send_request_body.complete
+2025-02-08 12:53:20,748 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:23,954 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:23 GMT'), (b'Content-Length', b'590')])
+2025-02-08 12:53:23,955 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:23,955 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:23,956 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:23,956 - DEBUG - response_closed.started
+2025-02-08 12:53:23,957 - DEBUG - response_closed.complete
+2025-02-08 12:53:23,958 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:23,958 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:23,958 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:23,958 - DEBUG - send_request_body.complete
+2025-02-08 12:53:23,958 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:25,301 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:25 GMT'), (b'Content-Length', b'383')])
+2025-02-08 12:53:25,302 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:25,303 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:25,303 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:25,303 - DEBUG - response_closed.started
+2025-02-08 12:53:25,303 - DEBUG - response_closed.complete
+2025-02-08 12:53:25,304 - INFO - current iteration: 1, reason_valid: False
+2025-02-08 12:53:25,304 - INFO - Invalid analysis result, retrying (attempt 2)...
+2025-02-08 12:53:25,304 - INFO - Starting response generation...
+2025-02-08 12:53:25,306 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:25,308 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:25,309 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:25,310 - DEBUG - send_request_body.complete
+2025-02-08 12:53:25,311 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:28,149 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:28 GMT'), (b'Content-Length', b'566')])
+2025-02-08 12:53:28,153 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:28,153 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:28,153 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:28,154 - DEBUG - response_closed.started
+2025-02-08 12:53:28,154 - DEBUG - response_closed.complete
+2025-02-08 12:53:28,155 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:28,156 - DEBUG - send_request_headers.complete
+2025-02-08 12:53:28,156 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-08 12:53:28,156 - DEBUG - send_request_body.complete
+2025-02-08 12:53:28,156 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-08 12:53:29,470 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sat, 08 Feb 2025 17:53:29 GMT'), (b'Content-Length', b'381')])
+2025-02-08 12:53:29,470 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-08 12:53:29,471 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-08 12:53:29,471 - DEBUG - receive_response_body.complete
+2025-02-08 12:53:29,471 - DEBUG - response_closed.started
+2025-02-08 12:53:29,471 - DEBUG - response_closed.complete
+2025-02-08 12:53:29,472 - INFO - current iteration: 2, reason_valid: True
+2025-02-08 12:53:29,472 - INFO - The reason is valid, returning the result

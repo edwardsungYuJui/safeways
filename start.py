@@ -60,7 +60,7 @@ def start_services():
     
     # Start reading server output in the background
     import threading
-    server_thread = threading.Thread(target=print_output, args=(server_process, "Server"), daemon=True)
+    server_thread = threading.Thread(target=None, args=(server_process, "Server"), daemon=True)
     server_thread.start()
     
     # Wait for server to start

@@ -1,0 +1,122 @@
+[
+  {
+    "timestamp": "09:10:38",
+    "child_name": "23423432324",
+    "sentiment": "SCAM",
+    "explanation": "",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "09:22:48",
+    "child_name": "234341234",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "09:25:36",
+    "child_name": "324324232342",
+    "sentiment": "SCAM",
+    "explanation": "The message content appears to be a random string of numbers, possibly indicating fraudulent activity.",
+    "alert_needed": false,
+    "message_range": "Messages 2 - 2 (Window of 1)"
+  },
+  {
+    "timestamp": "09:25:52",
+    "child_name": "324324232342",
+    "sentiment": "SCAM",
+    "explanation": "The user has not provided any message content.",
+    "alert_needed": true,
+    "message_range": "Messages 2 - 2 (Window of 1)"
+  },
+  {
+    "timestamp": "09:26:21",
+    "child_name": "rwererwer",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "09:32:54",
+    "child_name": "werwerwerew",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "09:40:54",
+    "child_name": "qerqewrqewr",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "09:57:19",
+    "child_name": "werewrewr",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "10:22:12",
+    "child_name": "rgsrgsrgrsg",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "10:42:43",
+    "child_name": "adfasfasfsa",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "10:46:13",
+    "child_name": "23234r234",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "11:19:22",
+    "child_name": "edwardsung63@gmail.com",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "11:27:58",
+    "child_name": "edwardsung63@gmail.com",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'phone' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "11:58:11",
+    "child_name": "2342232342342",
+    "sentiment": "SCAM",
+    "explanation": "The message contains a phone number and the user's average score is 100, which is above the threshold. High average scores often correlate with SCAM.",
+    "alert_needed": true,
+    "message_range": "Messages 2 - 2 (Window of 1)"
+  },
+  {
+    "timestamp": "11:58:32",
+    "child_name": "2342232342342",
+    "sentiment": "SUSPICIOUS",
+    "explanation": "Failed to find valid reason after 4 iterations, marking as suspicious",
+    "alert_needed": true,
+    "message_range": "Messages 2 - 2 (Window of 1)"
+  }
+]

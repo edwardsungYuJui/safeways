@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+import random
 
 
 class PhoneCheck:
@@ -11,8 +12,11 @@ class PhoneCheck:
         self.api_key_trestle = os.getenv("TRESTLE_PHONE_API_KEY")
 
     def check_phone(self, phone_number=None):
-        if not phone_number:
-            return 0.0
+        # STUB FOR TESTING
+        # return random.choice([100, 66, 33, 0])
+
+        # if not phone_number:
+        #     return random.choice([100, 66, 33, 0])
         # Numverify API
         numverify_url = (
             f"https://apilayer.net/api/validate?access_key={self.api_key_numverify}"
