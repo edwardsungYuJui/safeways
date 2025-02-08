@@ -1,0 +1,17 @@
+2025-01-28 14:50:45,060 - INFO - AsyncTkThread initialized
+2025-01-28 14:50:45,066 - INFO - ChatMonitorClient initialized with server: http://localhost:8000
+2025-01-28 14:50:45,188 - INFO - Chat display updated
+2025-01-28 14:50:45,189 - INFO - ChatWindow initialized for scammer
+2025-01-28 14:50:45,196 - INFO - Chat display updated
+2025-01-28 14:50:45,196 - INFO - ChatWindow initialized for victim
+2025-01-28 14:50:45,261 - INFO - MessengerChat initialized with sliding window size: 3
+2025-01-28 14:50:45,262 - INFO - Starting application
+2025-01-28 14:50:46,189 - INFO - Chat display updated
+2025-01-28 14:50:46,196 - INFO - Chat display updated
+2025-01-28 14:50:47,189 - INFO - Chat display updated
+2025-01-28 14:50:47,196 - INFO - Chat display updated
+2025-01-28 14:50:47,203 - INFO - Received signal 2
+2025-01-28 14:50:47,203 - INFO - Stopping application
+2025-01-28 14:50:47,204 - INFO - AsyncTkThread stopped
+2025-01-28 14:50:47,241 - INFO - Application stopped
+2025-01-28 14:50:47,241 - INFO - Received signal 15

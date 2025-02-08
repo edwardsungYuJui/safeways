@@ -1,0 +1,58 @@
+[
+  {
+    "timestamp": "21:14:57",
+    "child_name": "scammer",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "21:25:43",
+    "child_name": "scammer",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "21:27:53",
+    "child_name": "2062456933",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'prompt' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "21:32:21",
+    "child_name": "fwefewf",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'prompt' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "21:37:05",
+    "child_name": "rtwrt",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: 'EmailCheck' object has no attribute 'email'",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "21:44:24",
+    "child_name": "rfrwf",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: cannot access local variable 'prompt' where it is not associated with a value",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  },
+  {
+    "timestamp": "21:47:33",
+    "child_name": "wrfwrf",
+    "sentiment": "ERROR",
+    "explanation": "Failed to generate response: 'EmailCheck' object has no attribute 'email'",
+    "alert_needed": false,
+    "message_range": "Messages 1 - 1 (Window of 1)"
+  }
+]

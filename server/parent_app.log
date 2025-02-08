@@ -1,0 +1,110 @@
+2025-02-07 21:14:57,870 - INFO - Starting sentiment analysis
+2025-02-07 21:14:57,872 - DEBUG - Prompt length: 549
+2025-02-07 21:14:57,872 - DEBUG - Prompt:
+
+        You are a helpful assistant. Please analyze the user's messages in a concise manner.
+        Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
+        Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation".
+        Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".
+        
+        Analyze these chat messages briefly and respond *only* with JSON.
+        
+        Messages:
+        Sender: hello
+        
+2025-02-07 21:14:57,872 - INFO - Starting response generation...
+2025-02-07 21:14:57,878 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-02-07 21:14:57,878 - DEBUG - connect_tcp.failed exception=ConnectError(ConnectionRefusedError(61, 'Connection refused'))
+2025-02-07 21:14:57,879 - ERROR - Unexpected error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 126, in analyze_sentiment
+    response = first_guardian(
+               ^^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/server/guardian.py", line 36, in first_guardian
+    response: ChatResponse = chat(
+                             ^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 333, in chat
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 178, in _request
+    return cls(**self._request_raw(*args, **kwargs).json())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 124, in _request_raw
+    raise ConnectionError(CONNECTION_ERROR_MESSAGE) from None
+ConnectionError: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
+2025-02-07 21:25:43,039 - INFO - Starting sentiment analysis
+2025-02-07 21:25:43,041 - DEBUG - Prompt length: 1006
+2025-02-07 21:25:43,041 - DEBUG - Prompt:
+
+            You are a scam detecting assistant. Given the timestamp is in out the business hour and the average valid score of 0.0 from the phone preset fields pipeline, and the content below, determine to what extent is this text conversation a safe message and provide 5 reasons for this conclusion.
+            Please analyze the user's messages in a concise manner, following the format below.
+            Classify each conversation as "SCAM", "SUSPICIOUS", or "SAFE" based on its content.
+            Return valid JSON with keys: "sentiment" (SCAM, SUSPICIOUS, or SAFE), "alert_needed" (true/false), and "explanation" (5 bullet points for the conclusion).
+            Note that for sentiment key, the only three options are "SCAM", "SUSPICIOUS", or "SAFE".
+            Note that for explanation key, you MUST output 5 bullet points of reasonings.
+            Analyze these chat messages briefly and respond *only* with JSON.
+         
+            Messages:
+            Sender: hello scam
+            
+2025-02-07 21:25:43,041 - INFO - Starting response generation...
+2025-02-07 21:25:43,047 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-02-07 21:25:43,047 - DEBUG - connect_tcp.failed exception=ConnectError(ConnectionRefusedError(61, 'Connection refused'))
+2025-02-07 21:25:43,047 - ERROR - Unexpected error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 146, in analyze_sentiment
+    response = first_guardian(
+               ^^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/server/guardian.py", line 36, in first_guardian
+    response: ChatResponse = chat(
+                             ^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 333, in chat
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 178, in _request
+    return cls(**self._request_raw(*args, **kwargs).json())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/venv/lib/python3.12/site-packages/ollama/_client.py", line 124, in _request_raw
+    raise ConnectionError(CONNECTION_ERROR_MESSAGE) from None
+ConnectionError: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download
+2025-02-07 21:27:53,203 - INFO - Starting sentiment analysis
+2025-02-07 21:27:53,204 - ERROR - Unexpected error: cannot access local variable 'prompt' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 170, in analyze_sentiment
+    logger.debug(f"Prompt length: {len(prompt)}")
+                                       ^^^^^^
+UnboundLocalError: cannot access local variable 'prompt' where it is not associated with a value
+2025-02-07 21:32:21,973 - INFO - Starting sentiment analysis
+2025-02-07 21:32:21,974 - ERROR - Unexpected error: cannot access local variable 'prompt' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 170, in analyze_sentiment
+    logger.debug(f"Prompt length: {len(prompt)}")
+                                       ^^^^^^
+UnboundLocalError: cannot access local variable 'prompt' where it is not associated with a value
+2025-02-07 21:37:05,196 - INFO - Starting sentiment analysis
+2025-02-07 21:37:05,199 - ERROR - Unexpected error: 'EmailCheck' object has no attribute 'email'
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 153, in analyze_sentiment
+    email_score = email_checker.check_email(email)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/API_check/email_check.py", line 16, in check_email
+    url = f"https://emailvalidation.abstractapi.com/v1/?api_key={self.api_key}&email={self.email}"
+                                                                                      ^^^^^^^^^^
+AttributeError: 'EmailCheck' object has no attribute 'email'
+2025-02-07 21:44:24,532 - INFO - Starting sentiment analysis
+2025-02-07 21:44:24,533 - ERROR - Unexpected error: cannot access local variable 'prompt' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 170, in analyze_sentiment
+    logger.debug(f"Prompt length: {len(prompt)}")
+                                       ^^^^^^
+UnboundLocalError: cannot access local variable 'prompt' where it is not associated with a value
+2025-02-07 21:47:33,396 - INFO - Starting sentiment analysis
+2025-02-07 21:47:33,398 - ERROR - Unexpected error: 'EmailCheck' object has no attribute 'email'
+Traceback (most recent call last):
+  File "/Users/edwardsung/Documents/tartanhacks/server/sentiment_analyzer.py", line 153, in analyze_sentiment
+    email_score = email_checker.check_email(email)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edwardsung/Documents/tartanhacks/API_check/email_check.py", line 16, in check_email
+    url = f"https://emailvalidation.abstractapi.com/v1/?api_key={self.api_key}&email={self.email}"
+                                                                                      ^^^^^^^^^^
+AttributeError: 'EmailCheck' object has no attribute 'email'
